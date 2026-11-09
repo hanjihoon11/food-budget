@@ -2,9 +2,10 @@ import type { Category, Place } from '@/data/places';
 
 // 카카오 개발자 사이트의 JavaScript 키. 브라우저에 그대로 보이는 키라서 숨기지 않아도 되고,
 // 카카오 개발자 사이트 [플랫폼 키 > JavaScript SDK 도메인]에 등록한 주소에서만 동작한다.
-// (로컬: http://localhost:3000, http://localhost:3001, 배포: https://gdgjmj2233.github.io)
+// (로컬: http://localhost:3000, 배포: https://hanjihoon11.github.io)
 // 등록 안 된 주소에서 열면 sdk.js 요청이 거절되어 "지도를 불러오지 못했어요"가 뜬다.
-const KAKAO_JS_KEY = '867849122c282a5b4b6930ff2fb4d9e0';
+// 카카오맵 [제품 설정 > 카카오맵 > 사용 설정]도 켜져 있어야 한다.
+const KAKAO_JS_KEY = '657f349f6e19acac8ee6e9eca841cbf0';
 const SDK_ID = 'kakao-map-sdk';
 const LOAD_TIMEOUT_MS = 10_000;
 
