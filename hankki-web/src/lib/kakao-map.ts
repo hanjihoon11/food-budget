@@ -143,6 +143,10 @@ function foodPage(center: LatLng, page: number): Promise<kakao.maps.services.Pla
   });
 }
 
+// 수봉공원·숭의역 방향은 학교 가까운 범위까지만 표시한다. 부속고 방향은 기존 범위를 유지한다.
+const NORTH_LIMIT_LAT = 37.4555;
+const inRestaurantArea = (place: ExtraPlace) => Number.isFinite(place.lat) && Number.isFinite(place.lng) && place.lat <= NORTH_LIMIT_LAT;
+
 const squash = (name: string) => name.replace(/\s/g, '');
 
 let nearby: Promise<ExtraPlace[]> | null = null;
@@ -219,7 +223,7 @@ export function findNearbyRestaurants(known: Place[]): Promise<ExtraPlace[]> {
     const names = known.map((p) => squash(p.name));
     return all.filter((e) => {
       const n = squash(e.name);
-      return !names.some((k) => n.includes(k) || k.includes(n));
+      return inRestaurantArea(e) && !names.some((k) => n.includes(k) || k.includes(n));
     });
   })().catch((e) => {
     nearby = null;
